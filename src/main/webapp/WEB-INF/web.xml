@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>souvc</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>initServlet</servlet-name>
+  	<servlet-class>souvc.weixin.servlet.InitServlet</servlet-class>
+  <!-- 	配置获取access_token所需的appid 和appsecret -->
+  <init-param>
+  	<param-name>appid</param-name>
+  	<param-value>wx0e14fbcce2b76485</param-value>
+  </init-param>
+  <init-param>
+  	<param-name>appsecret</param-name>
+  	<param-value>e8cc964e10bce524ddefb25ef8f7a421</param-value>
+  </init-param>
+  <load-on-startup>0</load-on-startup>
+  
+  </servlet>
+</web-app>
