@@ -6,8 +6,14 @@ import javax.servlet.http.HttpServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import souvc.weixin.menu.Button;
+import souvc.weixin.menu.CommonButton;
+import souvc.weixin.menu.ComplexButton;
+import souvc.weixin.menu.Menu;
+import souvc.weixin.pojo.Token;
 import souvc.weixin.thread.TokenThread;
 import souvc.weixin.util.CommonUtil;
+import souvc.weixin.util.WeixinUtil;
 
 /**
  * 初始化Servlet
@@ -32,8 +38,12 @@ public class InitServlet extends HttpServlet{
 			
 		}else{
 			//启动定时器获取access_token的线程
+			
 			new Thread(new TokenThread()).start();
 		}
+		
+		
+		
 		
 	}
 }

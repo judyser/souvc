@@ -4,7 +4,7 @@ package souvc.weixin.menu;
  * @author xjw
  *
  */
-public class ComplexButton extends Button{
+public class ComplexButton extends CommonButton{
 	
 	private Button[] sub_button;
 

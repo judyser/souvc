@@ -63,7 +63,8 @@ public class CommonUtil {
 			if(null!= outputStr){
 				OutputStream outputStream = conn.getOutputStream();
 				//×¢Òâ±àÂë¸ñÊ½
-				outputStream.write(outputStr.getBytes("UTF-8"));
+				outputStream.write(outputStr.getBytes("utf-8"));
+				
 				outputStream.close();
 				
 			}
@@ -87,7 +88,7 @@ public class CommonUtil {
 			inputStream= null;
 			
 			conn.disconnect();
-			System.out.println(buffer.toString());
+			
 			jsonObject = JSON.parseObject(buffer.toString());
 			
 			

@@ -1,5 +1,7 @@
 package souvc.weixin.main;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +22,7 @@ import souvc.weixin.util.WeixinUtil;
 public class MenuManager {
 	private static Logger log = LoggerFactory.getLogger(MenuManager.class);
 	
-	public static void main(String []args){
+	public static void main(String []args) throws IOException{
 		//第三方用户唯一凭证
 		String appId ="wx0e14fbcce2b76485";
 		String appSecret="e8cc964e10bce524ddefb25ef8f7a421";
@@ -37,7 +39,10 @@ public class MenuManager {
 			}else{
 				log.info("菜单创建失败，错误码："+result);
 			}
+			
 		}
+		System.in.read();
+		
 	}
 	/**
 	 * 组装菜单数据
@@ -45,62 +50,62 @@ public class MenuManager {
 	 */
 	private static Menu getMenu() {
 		CommonButton btn11 = new CommonButton();
-		btn11.setKey("天气预报");
+		btn11.setKey("weather");
 		btn11.setType("click");
 		btn11.setKey("11");
 		
 		CommonButton btn12 = new CommonButton();
-		btn12.setKey("公交查询");
+		btn12.setKey("bus");
 		btn12.setType("click");
 		btn12.setKey("12");
 		
 		 CommonButton btn13 = new CommonButton();
-        btn13.setName("周边搜索");
+        btn13.setName("sosuo");
         btn13.setType("click");
         btn13.setKey("13");
 
         CommonButton btn14 = new CommonButton();
-        btn14.setName("历史上的今天");
+        btn14.setName("historyToday");
         btn14.setType("click");
         btn14.setKey("14");
 
         CommonButton btn21 = new CommonButton();
-        btn21.setName("歌曲点播");
+        btn21.setName("Music");
         btn21.setType("click");
         btn21.setKey("21");
 
         CommonButton btn22 = new CommonButton();
-        btn22.setName("经典游戏");
+        btn22.setName("GoodGame");
         btn22.setType("click");
         btn22.setKey("22");
 
         CommonButton btn23 = new CommonButton();
-        btn23.setName("美女电台");
+        btn23.setName("meinvDiantai");
         btn23.setType("click");
         btn23.setKey("23");
 
         CommonButton btn24 = new CommonButton();
-        btn24.setName("人脸识别");
+        btn24.setName("renLianshibie");
         btn24.setType("click");
         btn24.setKey("24");
 
         CommonButton btn25 = new CommonButton();
-        btn25.setName("聊天唠嗑");
+        btn25.setName("Liaotianlaoke");
         btn25.setType("click");
         btn25.setKey("25");
 
         CommonButton btn31 = new CommonButton();
-        btn31.setName("Q友圈");
+        btn31.setName("Qyouquan");
         btn31.setType("click");
         btn31.setKey("31");
 
         CommonButton btn32 = new CommonButton();
-        btn32.setName("电影排行榜");
+        btn32.setName("MOvie");
         btn32.setType("click");
         btn32.setKey("32");
 
         CommonButton btn33 = new CommonButton();
-        btn33.setName("幽默笑话");
+        btn33.setName("JOKE");
         btn33.setType("click");
         btn33.setKey("33");
 		
@@ -111,19 +116,28 @@ public class MenuManager {
         ComplexButton mainBtn1 = new ComplexButton();
         ComplexButton mainBtn2 = new ComplexButton();
         ComplexButton mainBtn3 = new ComplexButton();
-        mainBtn1.setName("生活助手");
-        mainBtn1.setSub_button(new CommonButton[]{btn11,btn12,btn13,btn14});
+        mainBtn1.setName("zhushou");
+       /* mainBtn1.setKey("1");
+        mainBtn1.setType("click");*/
+        
+        mainBtn1.setSub_button(new CommonButton[]{btn11,btn12});
         
         
         mainBtn2.setName("休闲驿站");
-        mainBtn2.setSub_button(new CommonButton[] { btn21, btn22, btn23, btn24, btn25 });
+        //mainBtn2.setSub_button(new CommonButton[] { btn21, btn22, btn23, btn24, btn25 });
         
         mainBtn3.setName("更多体验");
-        mainBtn3.setSub_button(new CommonButton[] { btn31, btn32, btn33 });
+       // mainBtn3.setSub_button(new CommonButton[] { btn31, btn32, btn33 });
         
         Menu menu = new Menu();
-        menu.setButton(new Button[]{mainBtn1,mainBtn2,mainBtn3});
+        CommonButton btn = new CommonButton();
+        btn.setKey("11");btn.setName("test");btn.setType("click");
+        CommonButton btn1 = new CommonButton();
+        btn1.setKey("12");btn1.setName("test1");btn1.setType("click");
+        //menu.setButton(new Button[]{mainBtn1,mainBtn2,mainBtn3});
+        menu.setButton(new Button[]{btn});
 		return menu;
+		
 	}
 	
 }
