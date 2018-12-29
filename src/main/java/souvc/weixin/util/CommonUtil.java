@@ -79,6 +79,7 @@ public class CommonUtil {
 				buffer.append(str);
 			}
 			
+			
 			//ÊÍ·Å×ÊÔ´
 			bufferedReader.close();
 			inputStreamReader.close();
@@ -94,6 +95,9 @@ public class CommonUtil {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		System.out.println(jsonObject.toJSONString());
+		System.out.println(jsonObject.toString());
+		
 		return jsonObject;
 	}
 	/**
@@ -111,7 +115,7 @@ public class CommonUtil {
 		if(null!=jsonObject){
 			try{
 				token = new Token();
-				token.setAccessToken(jsonObject.getString("access_token"));
+				token.setAccessToken(jsonObject.getString("access_token") );
 				token.setExpiresIn(jsonObject.getInteger("expires_in"));
 				
 				
