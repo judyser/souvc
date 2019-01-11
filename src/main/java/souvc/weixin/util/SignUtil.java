@@ -28,14 +28,15 @@ public class SignUtil {
 		String tmpStr = null;
 		try{
 			md = MessageDigest.getInstance("SHA-1");
-			//将三个参数字符串凭借从一个字符串进行sha1 加密
+			//密将三个参数字符串凭借从一个字符串进行sha1 加
 			byte[] digest = md.digest(conent.toString().getBytes());
 			tmpStr = byteToStr(digest);
 		}catch(NoSuchAlgorithmException e){
 			e.printStackTrace();
 		}
 		conent = null;
-		System.out.println(tmpStr);
+		System.out.println("jiamichuan: "+tmpStr);
+		System.out.println("signature:"+signature);
 		// 3.将sha1加密后的字符串可与signature对比，标识该请求来源于微信
 		return tmpStr !=null ?tmpStr.equals(signature.toUpperCase()):false;
 	}

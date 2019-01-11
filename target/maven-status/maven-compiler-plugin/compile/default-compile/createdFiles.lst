@@ -23,6 +23,7 @@ souvc\weixin\menu\ComplexButton.class
 souvc\weixin\service\CoreService.class
 souvc\weixin\message\resp\Image.class
 souvc\weixin\util\TokenUtil.class
+souvc\weixin\servlet\uploadImg.class
 souvc\weixin\message\resp\VideoMessage.class
 souvc\weixin\message\event\SubscribeEvent.class
 souvc\weixin\message\resp\Article.class

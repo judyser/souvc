@@ -15,6 +15,7 @@ public class hello extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
+		resp.setCharacterEncoding("utf-8");
 		out.print("ªÿ¿¥ø©£¨hello");
 	}
 
