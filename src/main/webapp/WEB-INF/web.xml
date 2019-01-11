@@ -10,6 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+
   <servlet>
   	<servlet-name>initServlet</servlet-name>
   	<servlet-class>souvc.weixin.servlet.InitServlet</servlet-class>
@@ -25,4 +26,19 @@
   <load-on-startup>0</load-on-startup>
   
   </servlet>
+  
+  
+<filter>
+		<filter-name>SetCharacterEncoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SetCharacterEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 </web-app>

@@ -1,6 +1,11 @@
 package souvc.weixin.util;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -128,6 +133,81 @@ public class CommonUtil {
 			
 		}
 		return token;
+	}
+	
+	public static JSONObject uploadMedia(String FileType,String filepath,String url) throws IOException{
+		//返回结果
+		String result= null;
+		File file = new File(filepath);
+		if(!file.exists()||!file.isFile()){
+			throw new IOException("文件不存在");
+		}
+		URL urlString = new URL(url);
+		HttpsURLConnection conn = (HttpsURLConnection) urlString.openConnection();
+		conn.setRequestMethod("POST");
+		conn.setDoInput(true);
+		conn.setDoOutput(true);
+		conn.setUseCaches(false);
+		
+		conn.setRequestProperty("Connection", "Keep-Alive");
+		conn.setRequestProperty("Charset", "UTF-8");
+		String BOUNDARY ="--------"+System.currentTimeMillis();
+		conn.setRequestProperty("Content-Type", "multipart/form-data;boundary="+BOUNDARY);
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("--");
+		sb.append(BOUNDARY);
+		sb.append("\r\n");
+		sb.append("Content-Disposition: form-data;name=\"media\"; filename=\"" + file.getName()+"\"\r\n");
+		sb.append("Content-Type:application/octet-stream\r\n\r\n");
+		
+		System.out.println("sb :"+sb);
+		
+		OutputStream out = new DataOutputStream(conn.getOutputStream());
+		out.write(sb.toString().getBytes("UTF-8"));
+		//文件正文部分
+        //把文件以流的方式 推送道URL中
+        DataInputStream din=new DataInputStream(new FileInputStream(file));
+        int bytes=0;
+        byte[] buffer=new byte[1024];
+        while((bytes=din.read(buffer))!=-1){
+            out.write(buffer,0,bytes);
+        }
+        din.close();
+        //结尾部分
+        byte[] foot=("\r\n--" + BOUNDARY + "--\r\n").getBytes("UTF-8");//定义数据最后分割线
+        out.write(foot);
+        out.flush();
+        out.close();
+        if(HttpsURLConnection.HTTP_OK==conn.getResponseCode()){
+
+            StringBuffer strbuffer=null;
+            BufferedReader reader=null;
+            try {
+                strbuffer=new StringBuffer();
+                reader=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String lineString=null;
+                while((lineString=reader.readLine())!=null){
+                    strbuffer.append(lineString);
+
+                }
+                if(result==null){
+                    result=strbuffer.toString();
+                    System.out.println("result:"+result);
+                }
+            } catch (IOException e) {
+                System.out.println("发送POST请求出现异常！"+e);
+                e.printStackTrace();
+            }finally{
+                if(reader!=null){
+                    reader.close();
+                }
+            }
+
+        }
+        JSONObject jsonObject=JSONObject.parseObject(result);
+        return jsonObject;
+
 	}
 		
 }

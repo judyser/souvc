@@ -34,11 +34,15 @@ public class CoreServlet extends HttpServlet{
 		String nonce = request.getParameter("nonce");
 		//随机字符串
 		String echostr = request.getParameter("echostr");
+		System.out.println("--------------------------");
+		System.out.println("zifuchuan:  "+echostr);
 		
 		PrintWriter out = response.getWriter();
 		
 		//通过校验signatrue 对请求进行校验，若校验成果原样返回echostr ，表示接入成功，否则接入失败
 		if(SignUtil.checkSignature(signature,timestamp,nonce)){
+			System.out.println("|||||||||||||||||||||||||||||");
+			System.out.println(echostr);
 			out.print(echostr);
 			
 		}

@@ -5,7 +5,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import souvc.weixin.message.resp.Image;
+import souvc.weixin.message.resp.ImageMessage;
 import souvc.weixin.message.resp.TextMessage;
+import souvc.weixin.util.CommonUtil;
 import souvc.weixin.util.MessageUtil;
 
 /**
@@ -42,15 +45,33 @@ public class CoreService {
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);;
 			
+			//回复图片信息
+			ImageMessage imageMessage = new ImageMessage();
+			imageMessage.setToUserName(fromUserName);
+			imageMessage.setFromUserName(toUserName);
+			imageMessage.setCreateTime(new Date().getTime());
+			imageMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_IMAGE);
+			Image image = new Image();
+			image.setMediaId("MnkSxbJjy9cPrgUXmK3SaN0U_nVaSqRK5Ufq6UgujAh3KGoOuaarW4fVvzSN38BG");
+			
+			
+			
 			//文本消息
 			if(msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)){
 				respContent="你发送的是文本消息";
+				//设置文本消息类容
+				textMessage.setContent(respContent);
+				respXml=MessageUtil.messageToXml(textMessage);
 				
 				
 			}
 			// 图片消息
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) {
-                respContent = "您发送的是图片消息！";
+                //respContent = "您发送的是图片消息！";
+                imageMessage.setImage(image);
+              respXml = MessageUtil.messageToXml(imageMessage);
+               
+                
             }
             // 语音消息
             else if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) {
@@ -97,10 +118,11 @@ public class CoreService {
                     // TODO 处理菜单点击事件
                 }
             }
-			//设置文本消息类容
-			textMessage.setContent(respContent);
+			
+			/*imageMessage.setImage(image);
 			//将文本消息对象
-			respXml = MessageUtil.messageToXml(textMessage);
+			respXml = MessageUtil.messageToXml(imageMessage);
+			System.out.println(respXml);*/
 		}catch (Exception e){
 			e.printStackTrace();
 		}
