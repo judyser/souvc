@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
 
+import souvc.weixin.menu.Button;
 import souvc.weixin.menu.Menu;
 
 /**
@@ -25,12 +26,12 @@ public class WeixinUtil {
 	 * @param accessToken
 	 * @return 0表示成功，其他表示失败
 	 */
-	public static int createMenu(Menu menu,String accessToken){
+	public static int createMenu(Button[] btn,String accessToken){
 		int result = 0;
 		//创建菜单的url
 		String url = menu_create_url.replaceAll("ACCESS_TOKEN", accessToken);
 		//将菜单对象转换为json字符串
-		String jsonMenu =JSONObject.toJSONString(menu);
+		String jsonMenu =JSONObject.toJSONString(btn);
 		//调用接口创建菜单
 		JSONObject jsonObject = CommonUtil.httpsRequest(url,"POST",jsonMenu);
 		if(null !=jsonObject){

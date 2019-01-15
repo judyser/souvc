@@ -48,7 +48,7 @@ public class MenuManager {
 	 * 组装菜单数据
 	 * @return
 	 */
-	private static Menu getMenu() {
+	private static ComplexButton[] getMenu() {
 		CommonButton btn11 = new CommonButton();
 		btn11.setKey("weather");
 		btn11.setType("click");
@@ -124,19 +124,22 @@ public class MenuManager {
         
         
         mainBtn2.setName("休闲驿站");
-        //mainBtn2.setSub_button(new CommonButton[] { btn21, btn22, btn23, btn24, btn25 });
+        mainBtn2.setSub_button(new CommonButton[] { btn21, btn22, btn23, btn24, btn25 });
         
         mainBtn3.setName("更多体验");
-       // mainBtn3.setSub_button(new CommonButton[] { btn31, btn32, btn33 });
+       mainBtn3.setSub_button(new CommonButton[] { btn31, btn32, btn33 });
         
         Menu menu = new Menu();
-        CommonButton btn = new CommonButton();
-        btn.setKey("11");btn.setName("test");btn.setType("click");
-        CommonButton btn1 = new CommonButton();
-        btn1.setKey("12");btn1.setName("test1");btn1.setType("click");
-        //menu.setButton(new Button[]{mainBtn1,mainBtn2,mainBtn3});
-        menu.setButton(new Button[]{btn});
-		return menu;
+      
+     
+        
+        
+        //btn.setKey("11");btn.setName("test");btn.setType("click");
+       // CommonButton btn1 = new CommonButton();
+       // btn1.setKey("12");btn1.setName("test1");btn1.setType("click");
+        ComplexButton[] comb=  new ComplexButton[]{mainBtn1,mainBtn2,mainBtn3};
+        
+		return comb;
 		
 	}
 	

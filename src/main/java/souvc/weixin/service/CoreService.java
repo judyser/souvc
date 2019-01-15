@@ -53,6 +53,7 @@ public class CoreService {
 			imageMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_IMAGE);
 			Image image = new Image();
 			image.setMediaId("MnkSxbJjy9cPrgUXmK3SaN0U_nVaSqRK5Ufq6UgujAh3KGoOuaarW4fVvzSN38BG");
+			//ª÷∏¥µÿ¿ÌŒª÷√
 			
 			
 			
